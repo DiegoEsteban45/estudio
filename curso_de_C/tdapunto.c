@@ -44,13 +44,13 @@ int obtenercuadrante_op(punto *p){
 		if (P->y>=0){
 			return 1;
 		}else{
-			return 2
+			return 2;
 		}	
 	else
-		if(P->x <  0 && P->y<0){
-			return 3
+		if(P->y<0){
+			return 3;
 		}else{
-			return 4
+			return 4;
 		}	
 }
 
