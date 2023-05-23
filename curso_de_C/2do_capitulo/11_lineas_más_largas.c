@@ -56,3 +56,19 @@ void copy(char linea_mas_larga[],char linea_actual[]){
 /*   
 HOLA    HOLA MUNDO
 0123    0123456789     */
+
+int getline3(char *s,int lim){
+    int c,i;
+    c=getchar();
+    *s=c;
+    i++;
+    for(;--lim>0&&((c=getchar())!=EOF)&&(c!='\n');++i)
+        *s++=c;
+        i++;
+    if(c=='\n'){
+        *s++=c;
+        ++i;
+    }
+    *s++='\0';/* el "\0" significa caracter nulo y debe ser incluido al final de una cadena de caracteres*/
+    return i;
+}
