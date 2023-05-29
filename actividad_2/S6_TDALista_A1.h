@@ -18,55 +18,51 @@ typedef struct listaa1 Listaa1;
 
 /* Encabezados de las operaciones programadas*/
 
-Listaa1 *a1crear_lista();
-int a1is_lista_vacia(Listaa1 *L1);
-Nodoa1 *a1crear_nodo(int val);
-void a1insertar_nodo_ini(Listaa1 *L1, int val); 
-void a1insertar_nodo_fin(Listaa1 *L1, int val);
-void a1mostrar_lista(Listaa1 *L1);
-int  a1eliminar_nodo_ini(Listaa1 *L1);
-int  a1eliminar_nodo_fin(Listaa1 *L1);
-void a1eliminar_nodo(Listaa1 *L1, int valE); /* eliminar para valor dado*/
-Nodoa1 *a1buscar_Nodo(Listaa1 *L1, int val); /* retorna la dirección del nodo */
-int calcular_promedio(Listaa1 *lista);
-
-
-/* Programación de las Operaciones ELEMENTALES
-  IMPORTANTE: No modifique estas operaciones ni agregue nuevas*/
-
+Listaa1 *a1crear_lista();                       //(1)
+int a1is_lista_vacia(Listaa1 *L1);              //(2)
+Nodoa1 *a1crear_nodo(int val);                  //(3)
+void a1insertar_nodo_ini(Listaa1 *L1, int val); //(4) 
+void a1insertar_nodo_fin(Listaa1 *L1, int val); //(5)
+void a1mostrar_lista(Listaa1 *L1);              //(6)
+int  a1eliminar_nodo_ini(Listaa1 *L1);          //(7)
+int  a1eliminar_nodo_fin(Listaa1 *L1);          //(8)
+void a1eliminar_nodo(Listaa1 *L1, int valE);    //(9) /*eliminar para valor dado*/
+Nodoa1 *a1buscar_Nodo(Listaa1 *L1, int val);   //(10) /*retorna la dirección del nodo*/
+int calcular_promedio(Listaa1 *lista);         //(11)
+Listaa1 *input_list();                         //(12)
+//(1)
 Listaa1 *a1crear_lista(){
 	Listaa1 *L1 = (Listaa1*)malloc(sizeof(Listaa1));
   L1->heada1 = NULL;
   L1->n = 0;
 	return L1;
 }
-
+//(2)
 int a1is_lista_vacia(Listaa1 *L1){
 	if(L1->heada1 == NULL)
 		return 1; /*lista vacía retorna un 1*/
 	else
 		return 0;
 }
-
+//(3)
 Nodoa1 *a1crear_nodo(int val){
 	Nodoa1 *new_nodo;
 	new_nodo = (Nodoa1*)malloc(sizeof(Nodoa1));
 	new_nodo->infoa1 = val;
-  new_nodo->siga1 = NULL;	
+    new_nodo->siga1 = NULL;	
   return new_nodo;
 }
-
-
+//(4)
 void a1insertar_nodo_ini(Listaa1 *L1, int val){
 	Nodoa1 *new_nodo;
 	new_nodo = a1crear_nodo(val);
-	if (!(a1is_lista_vacia(L1))){ 
+	if (!(a1is_lista_vacia(L1))){ // el if se ejecuta cuando la lista no esta vacia es decir la funcion alis retorna 0 y el ! lo tomma como verdadero 
 			new_nodo->siga1 = L1->heada1;
 	}
 	L1->heada1 = new_nodo;
 	L1->n = L1->n + 1;  /* aumenta el número de nodos de la lista L */
 }
-
+//(5)
 void a1insertar_nodo_fin(Listaa1 *L1, int val){
 	Nodoa1 *aux, *new_nodo;
 	aux = L1->heada1;
@@ -77,7 +73,7 @@ void a1insertar_nodo_fin(Listaa1 *L1, int val){
 	aux->siga1 = new_nodo;
 	L1->n++; /* aumenta el número de nodos de la lista L */
 }
-
+//(6)
 void a1mostrar_lista(Listaa1 *L1){
 	Nodoa1 *aux;
 	if (!(a1is_lista_vacia(L1))){ 
@@ -90,7 +86,7 @@ void a1mostrar_lista(Listaa1 *L1){
 	    }
     }
 }
-
+//(7)
 int a1eliminar_nodo_ini(Listaa1 *L1){
 	Nodoa1 *aux;
 	int e=0;
@@ -104,7 +100,7 @@ int a1eliminar_nodo_ini(Listaa1 *L1){
 	}
 	return e;
 }
-
+//(8)
 int  a1eliminar_nodo_fin(Listaa1 *L1){
 	Nodoa1 *aux, *auxE;
 	int e=0;
@@ -122,7 +118,7 @@ int  a1eliminar_nodo_fin(Listaa1 *L1){
 	}
 	return e;	
 }
-
+//(9)
 Nodoa1 *a1buscar_nodo(Listaa1 *L1, int val){
 	Nodoa1 *aux;
 	aux = L1->heada1;
@@ -132,9 +128,9 @@ Nodoa1 *a1buscar_nodo(Listaa1 *L1, int val){
 		else
 				return aux;
 	}
-  return aux;
+   return aux;
 }
-
+//(10)
 void a1eliminar_nodo(Listaa1 *L1, int val){
 	Nodoa1 *auxE, *aux; 
 	int e;
@@ -163,30 +159,40 @@ void a1eliminar_nodo(Listaa1 *L1, int val){
 		}
 	}	
 } 
-
-int calcular_promedio(Listaa1 *lista){
+//(11)
+int calcular_promedio(Listaa1 *lista){ /*calcula el promedio de elementos de la lista*/
 	int num;
-	int lim;
-	int suma;                    //la funcon primero captura elementos de tipo int hasta recibir un -1,lugo calcula el promedio de los elemntos
+	int suma;
 	int promedio;
-	suma=0;
 	int nodo;
 	Nodoa1 *aux;
-	lista=a1crear_lista();
-	printf("ingresar numeros, escriba -1 para finalizar");
-	scanf("%d",&num);
-	while(num!=-1){
-		a1insertar_nodo_ini(lista, num);
-		printf("ingresar numeros, escriba -1 para finalizar");
-		scanf("%d",&num); 	
-	}
-	lim=lista->n;
+	suma = 0;
 	aux = lista->heada1;
 	while(aux != NULL){
 		 nodo=aux->infoa1;
 		 suma=nodo+suma;
 		 aux = aux->siga1;	
 	}
-	promedio=suma/lim;
+	promedio=suma/(lista->n);
 	return promedio;	
-}	
+}
+//(12)
+Listaa1 *input_list(){ /* crea una lista por entrada*/
+	int num;
+	int num_2;
+	Listaa1 *lista;
+	lista = a1crear_lista();
+	num=0;
+	printf("ingresar numeros, escriba -1 para finalizar\n");
+	scanf("%d", &num_2);
+	a1insertar_nodo_ini(lista, num_2);
+	while(num!=-1){
+		printf("ingresar numeros, escriba -1 para finalizar\n");
+		scanf("%d",&num);
+		if (num!=-1){
+			a1insertar_nodo_fin(lista, num);
+		}		
+	}
+	return lista; 
+}
+
