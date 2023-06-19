@@ -22,16 +22,6 @@ int main(int argc,  char *argv[]) {
 	a1mostrar_lista(lista2);
 	printf("\nel promedio es:%d",promedio);
 	printf("\n");
-	cola=crer_cola();
-	encolar(cola,1);
-	encolar(cola,2);
-	encolar(cola,3);
-	encolar(cola,4);
-	encolar(cola,5);
-	encolar(cola,6);
-	encolar(cola,7);
-	mostrar_cola(cola);
-	obtener_elementos(lista2,A);
 	return 0;
 }
 
