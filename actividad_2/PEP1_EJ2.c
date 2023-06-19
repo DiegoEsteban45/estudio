@@ -3,9 +3,8 @@
 #include "S6_TDALista_A1.h"
 int main(int argc,  char *argv[]){
 //inicializacion
-    Listaa1 *lista2 ,*lista1 ,*lista_mod;
+    Listaa1 *lista2 ,*lista1;
     int *A;
-    int n;
 //entradas
     printf("lista 1 ingrese valores\n");
     lista1 = input_list();
@@ -15,7 +14,7 @@ int main(int argc,  char *argv[]){
     if((!(a1is_lista_vacia(lista1)))&&(!(a1is_lista_vacia(lista2)))){
         printf("lista 1 ");
         a1mostrar_lista(lista1);
-        lista_mod = repetir_elementos(lista1 ,lista2); //repite los elementos de la lista 1 que estan tambien en la lista 2
+        repetir_elementos(lista1 ,lista2); //repite los elementos de la lista 1 que estan tambien en la lista 2
         A = crear_array(lista2->n+1);
         obtener_elementos(lista2 ,A);
         shellshort(A,lista2->n);
@@ -25,7 +24,7 @@ int main(int argc,  char *argv[]){
         a1mostrar_lista(lista2);
         printf("\n\n");
         printf("lista modificada");
-        a1mostrar_lista(lista_mod);
+        a1mostrar_lista(lista1);
         printf("\n");
         imprimir(A);
     }else{
@@ -36,5 +35,8 @@ int main(int argc,  char *argv[]){
               printf("\nERROR LISTA 2 VACIA\n"); 
         }
     }
+    free(lista1);
+    free(lista2);
+    free(A);
     return 0;   
 }

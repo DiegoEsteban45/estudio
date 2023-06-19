@@ -1,11 +1,12 @@
 
 #include <stdio.h>
-#include <stdlib.h>
+#include <stdlib.h>   
 
 /* ESTRUCTURA DE DATOS  del TDA lista  */
 struct nodoa1{
   int infoa1;
   struct nodoa1 *siga1;
+
 };
 typedef struct nodoa1 Nodoa1;
 
@@ -28,31 +29,32 @@ typedef struct pila Pila;
 
 /* Encabezados de las operaciones programadas*/
 
-Listaa1 *a1crear_lista();                       //(1)
-int a1is_lista_vacia(Listaa1 *L1);              //(2)
-Nodoa1 *a1crear_nodo(int val);                  //(3)
-void a1insertar_nodo_ini(Listaa1 *L1, int val); //(4) 
-void a1insertar_nodo_fin(Listaa1 *L1, int val); //(5)
-void a1mostrar_lista(Listaa1 *L1);              //(6)
-int  a1eliminar_nodo_ini(Listaa1 *L1);          //(7)
-int  a1eliminar_nodo_fin(Listaa1 *L1);          //(8)
-void a1eliminar_nodo(Listaa1 *L1, int valE);    //(9) /*eliminar para valor dado*/
-Nodoa1 *a1buscar_Nodo(Listaa1 *L1, int val);   //(10) /*retorna la dirección del nodo*/
-int calcular_promedio(Listaa1 *lista);         //(11)
-Listaa1 *input_list();                         //(12)
-Cola *crer_cola();                             //(13)
-int cola_vacia(Cola *cola);                    //(14)
-void encolar(Cola *cola, int valor);           //(15)
-void mostrar_cola(Cola *cola);                 //(16)
-Pila *crear_pila();							   //(17)
-int pila_vacia(Pila *pila);                    //(18)
-void push(Pila *pila, int valor);              //(19)
-void obtener_elementos(Listaa1 *l,int *A);	   //(20)	
-void imprimir(int *array);                      //(21)
-int* crear_array(int espacios_de_memoria);     //(22)
-int binarisearchr(int num,int array[],int lim_inf,int lim_sup,int mid);  //(23)
-void shellshort(int v[],int n);	                                         //(24)
-Listaa1 *repetir_elementos(Listaa1 *l_1, Listaa1 *l_2);                  //(25)  
+Listaa1 *a1crear_lista();                       	//(1)
+int a1is_lista_vacia(Listaa1 *L1);              	//(2)
+Nodoa1 *a1crear_nodo(int val);                  	//(3)
+void a1insertar_nodo_ini(Listaa1 *L1, int val); 	//(4) 
+void a1insertar_nodo_fin(Listaa1 *L1, int val); 	//(5)
+void a1mostrar_lista(Listaa1 *L1);              	//(6)
+int  a1eliminar_nodo_ini(Listaa1 *L1);          	//(7)
+int  a1eliminar_nodo_fin(Listaa1 *L1);          	//(8)
+void a1eliminar_nodo(Listaa1 *L1, int valE);    	//(9) /*eliminar para valor dado*/
+Nodoa1 *a1buscar_Nodo(Listaa1 *L1, int val);   	   //(10) /*retorna la dirección del nodo*/
+int calcular_promedio(Listaa1 *lista);         	   //(11)
+Listaa1 *input_list();                        	   //(12)
+Cola *crer_cola();                          	   //(13)
+int cola_vacia(Cola *cola);              	       //(14)
+void encolar(Cola *cola, int valor);           	   //(15)
+void mostrar_cola(Cola *cola);                	   //(16)
+Pila *crear_pila();							       //(17)
+int pila_vacia(Pila *pila);                        //(18)
+void push(Pila *pila, int valor);                  //(19)
+void obtener_elementos(Listaa1 *l,int *A);	       //(20)	
+void imprimir(int *array);                         //(21)
+int* crear_array(int espacios_de_memoria);         //(22)
+Listaa1 *repetir_elementos(Listaa1 *l_1, Listaa1 *l_2);                  //(23)
+void shellshort(int v[],int n);	                                         //(24)  
+int binarisearchr(int num,int array[],int lim_inf,int lim_sup,int mid);  //(25)
+          
 
 //(1)
 Listaa1 *a1crear_lista(){
@@ -294,20 +296,20 @@ void obtener_elementos(Listaa1 *l,int *A){ //crea un array simple con todos los 
 	aux= l->heada1;
 	if(!(a1is_lista_vacia(l))){
 		while (aux!=NULL){
-			A[i]=aux->infoa1;
-			i++;
+			A[i]=aux->infoa1; // 0 1 2 3 4        5
+			i++;              // 1 2 3 4 5->null -1
 			aux=aux->siga1;
 		}
-		A[i] = NULL;	
+		A[i] = -1;	
 	}else{
-		A[0] = NULL;
+		A[0] = -1;
 	}
 }
 //(21)
 void imprimir(int *array){ // imprime el array
 	int i = 0;
 	printf("\narreglo -> {");
-    while (*array!=NULL){
+    while (*array!=-1){
            printf(" %d",*array);
            array++;
 		   i++;
@@ -322,16 +324,16 @@ int* crear_array(int espacios_de_memoria){ //crea un un array con la cantidad de
 }
 //(23)
 Listaa1 *repetir_elementos(Listaa1 *l_1, Listaa1 *l_2) { //repite los elemntos de la lista 1 que estan tambien en la lista 2
-    int *A;
+    int *A;  //variabe de tipo puntero a entero 
     int inicio, mitad;
     Nodoa1 *aux, *aux2;
     inicio = 0;
-    A = crear_array(l_2->n);
+    A = crear_array(l_2->n+1);  // A ahora alamacena n cantiadad de enteros
     aux = l_1->heada1;
     obtener_elementos(l_2, A);
 	shellshort(A, l_2->n);
 	if(!(a1is_lista_vacia(l_1))){
-		if (A[0] != NULL){
+		if (A[0] != -1){
 			printf("\n\n");
 			printf("numeros repetidos -> [");
 			while (aux != NULL){
@@ -347,11 +349,14 @@ Listaa1 *repetir_elementos(Listaa1 *l_1, Listaa1 *l_2) { //repite los elemntos d
 				}
 			}
 		}else{
+			free(A);
 			return 0;
 		}
 	}else{
+		free(A);
 		return 0;
 	}
+	free(A);
 	printf("]\n");
 	return l_1;
 }
