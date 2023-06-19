@@ -24,7 +24,46 @@ int main(int argc,  char *argv[]) {
 	printf("\n");
 	return 0;
 }
-
+/*
+//(11)
+int calcular_promedio(Listaa1 *lista){ /*calcula el promedio de elementos de la lista*/
+	int num;
+	int suma;
+	int promedio;
+	int nodo;
+	Nodoa1 *aux;
+	suma = 0;
+	aux = lista->heada1;
+	while(aux != NULL){
+		 nodo=aux->infoa1;
+		 suma=nodo+suma;
+		 aux = aux->siga1;	
+	}
+	promedio=suma/(lista->n);
+	return promedio;	
+}
+//(12)
+Listaa1 *input_list(){ /* crea una lista por entrada*/
+	int num;
+	int num_2;
+	Listaa1 *lista;
+	lista = a1crear_lista();
+	num = 0;
+	printf("ingresar numeros, escriba -1 para finalizar\n");
+	scanf("%d", &num_2);
+	if(num_2 != -1){
+		a1insertar_nodo_ini(lista, num_2);
+		while(num != -1){
+			printf("ingresar numeros, escriba -1 para finalizar\n");
+			scanf("%d",&num);
+			if (num != -1){
+				a1insertar_nodo_fin(lista, num);
+			}
+		}				
+	}
+	return lista; 
+}
+*/
 
 
 
