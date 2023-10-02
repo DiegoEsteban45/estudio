@@ -13,8 +13,9 @@ int main(int argc, char const *argv[]){
     int **producto;
     int pos_1,pos_2,pos_pro,result,fila_1,fila_2,colum_1,colum_2,i,j,k,count;
 
-    if ((argv[1]==NULL)&&(argv[2]==NULL)){
-        printf("\nERROR: ARCHIVOS NO SEÑALADOS.\n");
+    if ((argc<3)||(argc>3)){
+        printf("\nERROR: INDIQUE CORRECTAMENTE LOS ARCHIVOS.\n");
+        printf("\nejemplo:\nenrrutado...\\carpeta>multiplicar.exe a.txt b.txt\n");
         return 1;
     }
 
@@ -22,7 +23,25 @@ int main(int argc, char const *argv[]){
     MATRIZ_2=fopen(argv[2],"r");
 
     if ((MATRIZ_1 == NULL)&&(MATRIZ_2 == NULL)) {
-        printf("\nERROR: NO SE PUDO ABRIR EL ARCHIVO.\n");
+        printf("\nERROR: ARCHIVO(S) NO ENCONTRADO(S)\n");
+        printf("asegurese que la ubicacion o formato del archivo de texto sea el correcto para operar\nejemplo:\n");
+        printf("(numero de filas->3)  (numero de columnas->3)\n");
+        printf("1 2 3\n4 5 6\n7 8 9\nrevise el archivo ejemplo.txt creado\n");
+        printf("Nota: el orden de matrices a multiplicar tiene que tener el mismo numero de columnas que el de filas\n");
+        ejemplo=fopen("ejemplo.txt","w");
+        count=1;
+        fprintf(ejemplo,"%d ",3);
+        fprintf(ejemplo,"%d ",3);
+        fprintf(ejemplo,"\n"); 
+        for (i=0; i<3; i++){
+            for (j=0; j<3; j++){
+                fprintf(ejemplo,"%d ",count);
+                count++;      
+            }
+            fprintf(ejemplo,"\n");
+        }
+        
+        fclose(ejemplo);
         return 1;
     }
 
@@ -36,7 +55,7 @@ int main(int argc, char const *argv[]){
         printf("asegurese que el formato del archivo de texto sea el correcto para operar\nejemplo:\n");
         printf("(numero de filas->3)  (numero de columnas->3)\n");
         printf("1 2 3\n4 5 6\n7 8 9\nrevise el archivo ejemplo.txt creado\n");
-        printf("nota: el orden de matrices a multiplicar tiene que tener el mismo numero de columnas que el de filas\n");
+        printf("Nota: el orden de matrices a multiplicar tiene que tener el mismo numero de columnas que el de filas\n");
         ejemplo=fopen("ejemplo.txt","w");
         count=1;
         fprintf(ejemplo,"%d ",3);
@@ -72,7 +91,7 @@ int main(int argc, char const *argv[]){
         producto[i]=malloc(sizeof(int)*colum_2);
     }
 
-    //asiganmos los valores a MATRIZ_1 y mostarmos por pantalla
+    //asignamos los valores a MATRIZ_1 y mostarmos por pantalla
     printf("matriz_1\n");
     for (i=0; i<fila_1; i++){
         for (j=0; j<colum_1; j++){
@@ -84,7 +103,7 @@ int main(int argc, char const *argv[]){
 
     }
     printf("\nmatriz_2\n");
-    //asiganmos los valores a MATRIZ_2 y mostramos por pantalla
+    //asignamos los valores a MATRIZ_2 y mostramos por pantalla
      for (i=0; i<fila_2; i++){
         for (j=0; j<colum_2; j++){
             fscanf(MATRIZ_2,"%d",&pos_2);  
@@ -97,7 +116,7 @@ int main(int argc, char const *argv[]){
     printf("\nproducto matricial\n");
     //multiplicacion de matrices
     pos_pro=0;
-    for (i=0;i<fila_1;i++){ // nos movemos por las filas de matriz_1
+    for (i=0; i<fila_1; i++){ // nos movemos por las filas de matriz_1
         for(k=0;k<colum_2;k++){ //nos movemos por las columnas de la matriz_2
             for(j=0;j<fila_2;j++){ //nos movemos por las columnas de la matriz_1 y por las filas de la matriz_2
                 pos_pro=pos_pro+(matriz_1[i][j]*matriz_2[j][k]);
